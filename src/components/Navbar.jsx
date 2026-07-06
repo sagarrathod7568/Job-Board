@@ -56,11 +56,11 @@ const Navbar = () => {
 
         <nav className="hidden md:flex items-center gap-8">
 
-          <NavLink to="/" className={navLinkClass}>
+          <NavLink to="/" end className={navLinkClass}>
             Home
           </NavLink>
 
-          <NavLink to="/" className={navLinkClass}>
+          <NavLink to="/jobs" className={navLinkClass}>
             Jobs
           </NavLink>
 
@@ -124,7 +124,7 @@ const Navbar = () => {
               Home
             </NavLink>
 
-            <NavLink to="/" onClick={()=>setMobileOpen(false)}>
+            <NavLink to="/jobs" onClick={()=>setMobileOpen(false)}>
               Jobs
             </NavLink>
 

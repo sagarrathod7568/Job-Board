@@ -1,4 +1,5 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Hero from "../components/Hero";
 import jobs from "../data/jobs";
 import JobCard from "../components/JobCard";
@@ -6,6 +7,7 @@ import JobCard from "../components/JobCard";
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const resultsRef = useRef(null);
+  const { pathname } = useLocation();
 
   const handleSearch = (query) => {
     setSearchTerm(query);
@@ -40,11 +42,19 @@ const Home = () => {
     });
   }, [searchTerm]);
 
+  useEffect(() => {
+    if (pathname === "/jobs") {
+      requestAnimationFrame(() => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }, [pathname]);
+
   return (
     <>
       <Hero onSearch={handleSearch} />
 
-      <section ref={resultsRef} className="max-w-7xl mx-auto px-6 py-16">
+      <section id="jobs" ref={resultsRef} className="max-w-7xl mx-auto px-6 py-16">
 
         <div className="flex justify-between items-center mb-10">
 

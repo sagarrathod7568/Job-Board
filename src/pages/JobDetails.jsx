@@ -1,10 +1,20 @@
-import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
 import { getJobById } from "../services/jobService";
+import { isJobApplied, saveAppliedJob } from "../services/appliedJobsService";
 
 const JobDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const job = getJobById(id);
+  const [applied, setApplied] = useState(() => isJobApplied(id));
+
+  const handleApply = () => {
+    saveAppliedJob(id);
+    setApplied(true);
+    navigate("/saved");
+  };
 
   if (!job) {
     return (
@@ -118,10 +128,11 @@ const JobDetails = () => {
         </div>
 
         <button
-          className="mt-10 w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl text-lg font-semibold transition"
-          onClick={() => alert("Application Submitted Successfully!")}
+          className="mt-10 w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl text-lg font-semibold transition disabled:cursor-not-allowed disabled:bg-slate-400"
+          onClick={handleApply}
+          disabled={applied}
         >
-          Apply Now
+          {applied ? "Already Applied" : "Apply Now"}
         </button>
 
       </div>
