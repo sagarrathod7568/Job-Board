@@ -3,7 +3,7 @@ import { FaBookmark, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
 
 const JobCard = ({ job }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 border border-gray-100 dark:bg-slate-800 dark:border-slate-700 dark:shadow-slate-950/30">
 
       {/* Company */}
 
@@ -16,18 +16,18 @@ const JobCard = ({ job }) => {
           </div>
 
           <div>
-            <h2 className="text-xl font-semibold">
+            <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
               {job.title}
             </h2>
 
-            <p className="text-gray-500">
+            <p className="text-gray-500 dark:text-slate-400">
               {job.company}
             </p>
           </div>
 
         </div>
 
-        <button className="text-gray-400 hover:text-blue-600">
+        <button className="text-gray-400 hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400">
           <FaBookmark />
         </button>
 
@@ -35,7 +35,7 @@ const JobCard = ({ job }) => {
 
       {/* Info */}
 
-      <div className="flex flex-wrap gap-5 mt-6 text-gray-600 text-sm">
+      <div className="flex flex-wrap gap-5 mt-6 text-gray-600 text-sm dark:text-slate-300">
 
         <div className="flex items-center gap-2">
           <FaMapMarkerAlt />
@@ -66,7 +66,7 @@ const JobCard = ({ job }) => {
         {job.skills.map((skill) => (
           <span
             key={skill}
-            className="bg-gray-100 px-3 py-1 rounded-full text-sm"
+            className="bg-gray-100 px-3 py-1 rounded-full text-sm dark:bg-slate-700 dark:text-slate-200"
           >
             {skill}
           </span>

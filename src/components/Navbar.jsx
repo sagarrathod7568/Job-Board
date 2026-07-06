@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   HiOutlineMenuAlt3,
@@ -9,17 +9,30 @@ import {
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+      return savedTheme === "dark";
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   const navLinkClass = ({ isActive }) =>
     `transition-colors duration-200 ${
       isActive
-        ? "text-blue-600 font-semibold"
-        : "text-slate-600 hover:text-blue-600"
+        ? "text-blue-600 dark:text-blue-400 font-semibold"
+        : "text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200">
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200 dark:bg-slate-950/80 dark:border-slate-800">
       <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6">
 
         {/* Logo */}
@@ -29,11 +42,11 @@ const Navbar = () => {
           </div>
 
           <div>
-            <h1 className="font-bold text-xl text-slate-900">
+            <h1 className="font-bold text-xl text-slate-900 dark:text-white">
               TalentHub
             </h1>
 
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Find Your Dream Career
             </p>
           </div>
@@ -63,7 +76,8 @@ const Navbar = () => {
 
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center hover:bg-slate-100 transition"
+            className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-100 transition dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
           >
             {darkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
           </button>
@@ -77,7 +91,7 @@ const Navbar = () => {
         {/* Mobile Button */}
 
         <button
-          className="md:hidden text-3xl"
+          className="md:hidden text-3xl text-slate-800 dark:text-slate-100"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? (
@@ -90,12 +104,21 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
+      
 
       {mobileOpen && (
 
-        <div className="md:hidden bg-white border-t border-slate-200">
+        <div className="md:hidden bg-white border-t border-slate-200 dark:bg-slate-950 dark:border-slate-800">
 
-          <nav className="flex flex-col p-5 gap-5">
+          <nav className="flex flex-col p-5 gap-5 text-slate-700 dark:text-slate-200">
+
+            <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-100 transition dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {darkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
+          </button>
 
             <NavLink to="/" onClick={()=>setMobileOpen(false)}>
               Home
@@ -105,9 +128,9 @@ const Navbar = () => {
               Jobs
             </NavLink>
 
-            {/* <NavLink to="/saved" onClick={()=>setMobileOpen(false)}>
+            <NavLink to="/saved" onClick={()=>setMobileOpen(false)}>
               Saved Jobs
-            </NavLink> */}
+            </NavLink>
 
             <button className="bg-blue-600 text-white rounded-lg py-3">
               Post Job

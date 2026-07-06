@@ -34,7 +34,7 @@ const JobDetails = () => {
         Back to Jobs
       </Link>
 
-      <div className="bg-white rounded-2xl shadow-lg p-8">
+      <div className="bg-white rounded-2xl shadow-lg p-8 dark:bg-slate-800 dark:shadow-slate-950/30">
 
         <div className="flex items-center gap-5">
 
@@ -44,11 +44,11 @@ const JobDetails = () => {
 
           <div>
 
-            <h1 className="text-4xl font-bold">
+            <h1 className="text-4xl font-bold text-slate-900 dark:text-white">
               {job.title}
             </h1>
 
-            <p className="text-xl text-gray-600 mt-2">
+            <p className="text-xl text-gray-600 mt-2 dark:text-slate-400">
               {job.company}
             </p>
 
@@ -56,7 +56,7 @@ const JobDetails = () => {
 
         </div>
 
-        <div className="flex flex-wrap gap-6 mt-8 text-gray-600">
+        <div className="flex flex-wrap gap-6 mt-8 text-gray-600 dark:text-slate-300">
 
           <div className="flex items-center gap-2">
             <FaMapMarkerAlt />
@@ -75,7 +75,7 @@ const JobDetails = () => {
         </div>
 
         <div className="mt-8">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
             Salary
           </h2>
 
@@ -86,11 +86,11 @@ const JobDetails = () => {
 
         <div className="mt-8">
 
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
             Job Description
           </h2>
 
-          <p className="text-gray-700 leading-8 mt-4">
+          <p className="text-gray-700 leading-8 mt-4 dark:text-slate-300">
             {job.description}
           </p>
 
@@ -98,7 +98,7 @@ const JobDetails = () => {
 
         <div className="mt-8">
 
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">
             Required Skills
           </h2>
 

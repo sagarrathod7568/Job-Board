@@ -11,11 +11,11 @@ const Home = () => {
 
         <div className="flex justify-between items-center mb-10">
 
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
             Latest Jobs
           </h2>
 
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-slate-400">
             {jobs.length} Jobs Available
           </p>
 
