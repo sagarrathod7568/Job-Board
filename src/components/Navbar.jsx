@@ -100,18 +100,29 @@ const Navbar = () => {
 
         </div>
 
-        {/* Mobile Button */}
+        {/* Mobile Buttons */}
 
-        <button
-          className="md:hidden text-3xl text-slate-800 dark:text-slate-100"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          {mobileOpen ? (
-            <HiOutlineX />
-          ) : (
-            <HiOutlineMenuAlt3 />
-          )}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-100 transition dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {darkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
+          </button>
+
+          <button
+            className="text-3xl text-slate-800 dark:text-slate-100"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? (
+              <HiOutlineX />
+            ) : (
+              <HiOutlineMenuAlt3 />
+            )}
+          </button>
+        </div>
 
       </div>
 
@@ -123,14 +134,6 @@ const Navbar = () => {
         <div className="md:hidden bg-white border-t border-slate-200 dark:bg-slate-950 dark:border-slate-800">
 
           <nav className="flex flex-col p-5 gap-5 text-slate-700 dark:text-slate-200">
-
-            <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-100 transition dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
-            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {darkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
-          </button>
 
             <NavLink to="/" onClick={goToHome}>
               Home
