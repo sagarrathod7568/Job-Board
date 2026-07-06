@@ -1,10 +1,19 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Hero from "../components/Hero";
 import jobs from "../data/jobs";
 import JobCard from "../components/JobCard";
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const resultsRef = useRef(null);
+
+  const handleSearch = (query) => {
+    setSearchTerm(query);
+
+    requestAnimationFrame(() => {
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
 
   const filteredJobs = useMemo(() => {
     const query = searchTerm.toLowerCase();
@@ -33,9 +42,9 @@ const Home = () => {
 
   return (
     <>
-      <Hero onSearch={setSearchTerm} />
+      <Hero onSearch={handleSearch} />
 
-      <section className="max-w-7xl mx-auto px-6 py-16">
+      <section ref={resultsRef} className="max-w-7xl mx-auto px-6 py-16">
 
         <div className="flex justify-between items-center mb-10">
 
