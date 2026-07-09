@@ -8,10 +8,14 @@ const JobCard = ({ job, onSavedChange }) => {
   const [saved, setSaved] = useState(() => isJobSaved(job.id));
 
   const handleToggleSaved = () => {
-    toast.success("Job Saved!");
     const nextSaved = toggleSavedJob(job.id);
     setSaved(nextSaved);
     onSavedChange?.();
+    if(!saved){
+      toast.success("Job Saved!");
+    }else{
+      toast.success("Job Unsaved!");
+    }
   };
 
   return (

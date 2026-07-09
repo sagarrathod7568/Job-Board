@@ -42,7 +42,7 @@ const PostJob = () => {
     });
 
     navigate(`/job/${postedJob.id}`);
-    toast.success("Job Posted!");
+    toast.success("Job Posted successfully!");
   };
 
   return (

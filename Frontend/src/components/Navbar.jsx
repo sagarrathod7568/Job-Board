@@ -51,7 +51,7 @@ const Navbar = () => {
     localStorage.removeItem("user");
     setProfileOpen(false);
     navigate("/login", { replace: true });
-    toast.success("Logged out!");
+    toast.success("You Logged out!");
   };
 
   return (

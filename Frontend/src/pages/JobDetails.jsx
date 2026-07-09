@@ -12,7 +12,7 @@ const JobDetails = () => {
   const [applied, setApplied] = useState(() => isJobApplied(id));
 
   const handleApply = () => {
-    toast.success("Job Applied!");
+    toast.success("Job Applied successfully!");
     saveAppliedJob(id);
     setApplied(true);
     navigate("/applied");
